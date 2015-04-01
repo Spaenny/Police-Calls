@@ -50,9 +50,9 @@ if CLIENT then
 			base:SetTitle( "Police report" )
 			base:ShowCloseButton( false )
 			function base:Paint( w, h )
-				draw.RoundedBox(0, 0, 0, w, h, Color( 51, 77, 92 ))
-				draw.RoundedBox(0,0,0, w, h - 95, Color( 255, 255, 255, 20))
-				draw.RoundedBox(0,0,15, w, h - 110, Color( 255, 255, 255, 5))
+				draw.RoundedBox(0, 0, 0, w, h, PPC.Base)
+				draw.RoundedBox(0,0,0, w, h - 95, PPC.Basetopmain)
+				draw.RoundedBox(0,0,15, w, h - 110, PPC.Basetopbot)
 				surface.DrawOutlinedRect( 2, 2, w - 4 , h - 4 )
 			end
 
@@ -90,9 +90,8 @@ if CLIENT then
 				base:Close()
 			end
 			function btn1:Paint( w, h )
-				draw.RoundedBox(0, 0, 0, w, h, Color( 69, 178, 157))
-				draw.RoundedBox(0, 0, 0, w, h/2, Color( 255, 255, 255, 10))
-				surface.DrawOutlinedRect( -1, -1, w + 2 , h + 2 )
+				draw.RoundedBox(0, 0, 0, w, h, PPC.Buttontop)
+				draw.RoundedBox(0, 0, 0, w, h/2,PPC.Buttonbottom)
 			end
 
 			local btn2 = vgui.Create( "DButton" )
@@ -108,9 +107,8 @@ if CLIENT then
 				base:Close()
 			end
 			function btn2:Paint( w, h )
-				draw.RoundedBox(0, 0, 0, w, h, Color( 69, 178, 157))
-				draw.RoundedBox(0, 0, 0, w, h/2, Color( 255, 255, 255, 10))
-				surface.DrawOutlinedRect( -1, -1, w + 2 , h + 2 )
+				draw.RoundedBox(0, 0, 0, w, h, PPC.Buttontop)
+				draw.RoundedBox(0, 0, 0, w, h/2,PPC.Buttonbottom)
 			end
 			end
 		end

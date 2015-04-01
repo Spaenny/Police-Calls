@@ -1,9 +1,9 @@
 if SERVER then
-	include( "policeCall/sv_policecalls.lua" )
-	include( "policeCall/config.lua" )
-	AddCSLuafile( "policeCall/cl_policecalls.lua" )
-	AddCSLuafile( "policeCall/config.lua" )
+	include( "PoliceCall/sv_policecalls.lua" )
+	include( "PoliceCall/config.lua" )
+	AddCSLuaFile( "PoliceCall/cl_policecalls.lua" )
+	AddCSLuaFile( "PoliceCall/config.lua" )
 else
-	include( "policeCall/cl_policecalls.lua" )
-	include( "policeCall/config.lua" )
+	include( "PoliceCall/cl_policecalls.lua" )
+	include( "PoliceCall/config.lua" )
 end

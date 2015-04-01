@@ -33,14 +33,14 @@ if SERVER then
 					net.Send( ply )
 						ply:ChatPrint( "You have sent an report to all online officers: "..msg )
 						ply.lasttimeused = CurTime()
-						return false
+						return ''
 					else
 						ply:ChatPrint( "Sorry there are no online officers!" )
-						return false
+						return ''
 					end
 				else
 					ply:ChatPrint( "Your message is either way too short, or it was too long to display, write about 10 - 24 cars!" )
-					return false
+					return ''
 			end
 		end
 	end
