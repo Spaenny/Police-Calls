@@ -1,44 +1,42 @@
-if CLIENT then
-	surface.CreateFont("SpennyRoboto", {
-		font = "Roboto",
-		size = 22,
-		weight = 400,
-		blursize = 0,
-		scanlines = 0,
-		antialias = true,
-	})
+surface.CreateFont("SpennyRoboto", {
+	font = "Roboto",
+	size = 22,
+	weight = 400,
+	blursize = 0,
+	scanlines = 0,
+	antialias = true,
+})
 
-		surface.CreateFont("SpennyRobotoSmall", {
-		font = "Roboto",
-		size = 16,
-		weight = 400,
-		blursize = 0,
-		scanlines = 0,
-		antialias = true,
-	})
+surface.CreateFont("SpennyRobotoSmall", {
+	font = "Roboto",
+	size = 16,
+	weight = 400,
+	blursize = 0,
+	scanlines = 0,
+	antialias = true,
+})
 
-	local RadioSound = {
-		"ambient/levels/prison/radio_random1.wav",
-		"ambient/levels/prison/radio_random10.wav",
-		"ambient/levels/prison/radio_random11.wav",
-		"ambient/levels/prison/radio_random12.wav",
-		"ambient/levels/prison/radio_random13.wav",
-		"ambient/levels/prison/radio_random14.wav",
-		"ambient/levels/prison/radio_random15.wav",
-		"ambient/levels/prison/radio_random2.wav",
-		"ambient/levels/prison/radio_random3.wav",
-		"ambient/levels/prison/radio_random4.wav",
-		"ambient/levels/prison/radio_random5.wav",
-		"ambient/levels/prison/radio_random6.wav",
-		"ambient/levels/prison/radio_random7.wav",
-		"ambient/levels/prison/radio_random8.wav",
-		"ambient/levels/prison/radio_random9.wav",
-	}
+local RadioSound = {
+	"ambient/levels/prison/radio_random1.wav",
+	"ambient/levels/prison/radio_random10.wav",
+	"ambient/levels/prison/radio_random11.wav",
+	"ambient/levels/prison/radio_random12.wav",
+	"ambient/levels/prison/radio_random13.wav",
+	"ambient/levels/prison/radio_random14.wav",
+	"ambient/levels/prison/radio_random15.wav",
+	"ambient/levels/prison/radio_random2.wav",
+	"ambient/levels/prison/radio_random3.wav",
+	"ambient/levels/prison/radio_random4.wav",
+	"ambient/levels/prison/radio_random5.wav",
+	"ambient/levels/prison/radio_random6.wav",
+	"ambient/levels/prison/radio_random7.wav",
+	"ambient/levels/prison/radio_random8.wav",
+	"ambient/levels/prison/radio_random9.wav",
+}
 
-	net.Receive( "PoliceCallNet", function()
-		for _,team in pairs( PPC.AllowedTeams ) do
-			if _G[team] != nil and LocalPlayer():Team() == _G[team] then
-
+net.Receive( "PoliceCallNet", function()
+	for _,team in pairs( PPC.AllowedTeams ) do
+		if _G[team] != nil and LocalPlayer():Team() == _G[team] then
 			local msg = net.ReadString()
 			local ply = net.ReadEntity()
 
@@ -49,6 +47,7 @@ if CLIENT then
 			base:SetVisible( true )
 			base:SetTitle( "Police report" )
 			base:ShowCloseButton( false )
+		
 			function base:Paint( w, h )
 				draw.RoundedBox(0, 0, 0, w, h, PPC.Base)
 				draw.RoundedBox(0,0,0, w, h - 95, PPC.Basetopmain)
@@ -110,7 +109,6 @@ if CLIENT then
 				draw.RoundedBox(0, 0, 0, w, h, PPC.Buttontop)
 				draw.RoundedBox(0, 0, 0, w, h/2,PPC.Buttonbottom)
 			end
-			end
 		end
-	end )
-end
+	end
+end )
