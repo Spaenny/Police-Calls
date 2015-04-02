@@ -25,7 +25,7 @@ hook.Add( "OnPlayerChangedTeam", "PoliceOfficersQuestionmark", function( ply, ol
 	else
 		copson = false
 	end
-end
+end )
 
 hook.Add( "PlayerSay", "911Calls", function( ply, msg )
 	local cmd = string.gsub( msg, "%s.*", "" )
@@ -56,7 +56,7 @@ hook.Add( "PlayerSay", "911Calls", function( ply, msg )
 			return false
 		end
 	end
-end
+end )
 
 
 net.Receive( "CallP", function(len, ply)
