@@ -3,6 +3,7 @@ include( "PoliceCall/sh_policecalls.lua" )
 
 if SERVER then
 	AddCSLuaFile( "PoliceCall/sh_config.lua" )
+	AddCSLuaFile( "PoliceCall/sh_policecalls.lua" )
 	AddCSLuaFile( "PoliceCall/cl_policecalls.lua" )
 	include( "PoliceCall/sv_policecalls.lua" )
 else

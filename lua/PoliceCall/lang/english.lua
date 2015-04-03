@@ -1,5 +1,5 @@
 t.panelTitle = "Police report"
-t.reportedLabel = "%s reported:"
+t.reportLabel = "%s reported:"
 t.respondLabel = "Respond?"
 t.acceptCall = "Yes"
 t.declineCall = "No"

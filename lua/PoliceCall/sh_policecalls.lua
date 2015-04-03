@@ -2,13 +2,6 @@
 PPC.defaultLanguage = "english"
 
 PPC.lang = {}
-PPC.defl = {}
-
-local loaded = PPC:LoadLanguage(PPC:GetLanguage())
-
-if not loaded or ( loaded and PPC:GetLanguage() ~= PPC.defaultLanguage ) then
-	PPC:LoadLanguage(PPC.defaultLanguage)
-end
 
 function PPC:GetLanguage()
 	return self.Language or self.defaultLanguage
@@ -17,10 +10,7 @@ end
 function PPC:LoadLanguage(name)
 	local temp = {}
 	temp.t = {}
-	local meta = {}
-	meta.__index = _G
-	setmetatable(temp, meta)
-
+	
 	local func = CompileFile("PoliceCall/lang/" .. name .. ".lua")
 
 	if isfunction(func) then
@@ -32,11 +22,7 @@ function PPC:LoadLanguage(name)
 		local succ, err = pcall(func)
 
 		if succ then
-			if name ~= self.defaultLanguage then
-				self.lang[name] = temp.t
-			else
-				self.defl[name] = temp.t
-			end
+			self.lang[name] = temp.t
 			return true
 		else
 			MsgC(Color(255, 50, 50), "Loading " .. name .. " translation failed\nError: " .. err .. "\n")
@@ -49,13 +35,19 @@ function PPC:LoadLanguage(name)
 end
 
 function PPC:Translate(key, ...)
-	local args = {...}
-	if self.lang[key] then
-		return string.format(self.lang[key], unpack(args)) or "PPC.lang." .. tostring(key)
-	elseif self.defl[key] then
-		return string.format(self.lang[key], unpack(args)) or "PPC.lang." .. tostring(key)
+	local args = {...} or ""
+	if self.lang[self:GetLanguage()][key] then
+		return string.format(self.lang[self:GetLanguage()][key], unpack(args)) or "PPC.lang." .. self:GetLanguage() .. "." .. key
+	elseif self.lang[self.defaultLanguage][key] then
+		return string.format(self.lang[self.defaultLanguage][key], unpack(args)) or "PPC.lang." .. self.defaultLanguage .. "." .. key
 	else
-		MsgC(Color(255, 50, 50), "'" .. tostring(key) .. "' is missing in default language table!'\n")
-		return "PPC.lang." .. tostring(key)
+		MsgC(Color(255, 50, 50), "'" .. key .. "' is missing in default language table!'\n")
+		return "PPC.lang." .. self.defaultLanguage .. "." .. key
 	end
+end
+
+local loaded = PPC:LoadLanguage(PPC:GetLanguage())
+
+if not loaded or ( loaded and PPC:GetLanguage() ~= PPC.defaultLanguage ) then
+	PPC:LoadLanguage(PPC.defaultLanguage)
 end
