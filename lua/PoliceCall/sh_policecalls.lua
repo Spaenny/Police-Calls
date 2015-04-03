@@ -52,7 +52,7 @@ function PPC:Translate(key, ...)
 	local args = {...}
 	if self.lang[key] then
 		return string.format(self.lang[key], unpack(args)) or "PPC.lang." .. tostring(key)
-	elseif self.defl[key]
+	elseif self.defl[key] then
 		return string.format(self.lang[key], unpack(args)) or "PPC.lang." .. tostring(key)
 	else
 		MsgC(Color(255, 50, 50), "'" .. tostring(key) .. "' is missing in default language table!'\n")
