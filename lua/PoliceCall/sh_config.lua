@@ -1,6 +1,6 @@
 PPC = PPC or {} -- ignore
 
--- Used later
+-- Set language of this addon to your needs
 PPC.Language = "english" -- name of file in lua/lang without the .lua extension
 
 -- Set here the team you would like to receive the messages of the reporting peoples.

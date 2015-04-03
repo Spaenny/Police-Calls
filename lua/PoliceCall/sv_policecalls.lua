@@ -34,7 +34,7 @@ hook.Add( "PlayerSay", "911Calls", function( ply, msg )
 		if ply.lasttimeused then
 			if ply.lasttimeused + PPC.MessageCD > CurTime() then
 				local waittime = PPC.MessageCD - math.floor( CurTime() - ply.lasttimeused )
-				ply:PrintMessage(HUD_PRINTTALK, "You might want to wait another " .. tostring( waittime ) .. " second(s)")
+				ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "spamProtect", tostring( waittime ) ))
 				return false
 			end
 		end
@@ -44,15 +44,15 @@ hook.Add( "PlayerSay", "911Calls", function( ply, msg )
 					net.WriteString( msg )
 					net.WriteEntity( ply )
 				net.Send( ply )
-				ply:PrintMessage( HUD_PRINTTALK, "You have sent an report to all online officers: " .. msg )
+				ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "reportSent", msg ) )
 				ply.lasttimeused = CurTime()
 				return false
 			else
-				ply:PrintMessage( HUD_PRINTTALK, "Sorry there are no online officers!" )
+				ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "noOfficers" ) )
 				return false
 			end
 		else
-			ply:PrintMessage( HUD_PRINTTALK, "Your message is either way too short, or it was too long to display, write about " .. PPC.MinMsgLength .. "-" .. PPC.MaxMsgLength .. " cars!" )
+			ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "invalidMsgLength", PPC.MinMsgLength, PPC.MaxMsgLength ) )
 			return false
 		end
 	end
@@ -63,8 +63,8 @@ net.Receive( "CallP", function(len, ply)
 	local plycall = net.ReadEntity()
 	local bool = net.ReadBit()
 	if bool == 0 then
-		ply:Say("/g I will not be able to help the citizen, named: "..plycall:Nick().."!", false)
+		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
 	elseif bool == 1 then
-		ply:Say("/g I am responding to the call of the citizen named: "..plycall:Nick().."!", false)
+		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
 	end
 end )

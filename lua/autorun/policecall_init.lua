@@ -1,4 +1,5 @@
 include( "PoliceCall/sh_config.lua" )
+include( "PoliceCall/sh_policecalls.lua" )
 
 if SERVER then
 	AddCSLuaFile( "PoliceCall/sh_config.lua" )
