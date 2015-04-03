@@ -4,7 +4,9 @@ PPC.defaultLanguage = "english"
 PPC.lang = {}
 PPC.defl = {}
 
-if PPC:LoadLanguage(PPC:GetLanguage()) and PPC:GetLanguage() ~= PPC.defaultLanguage then
+local loaded = PPC:LoadLanguage(PPC:GetLanguage())
+
+if not loaded or ( loaded and PPC:GetLanguage() ~= PPC.defaultLanguage ) then
 	PPC:LoadLanguage(PPC.defaultLanguage)
 end
 
