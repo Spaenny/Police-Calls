@@ -17,4 +17,12 @@ PPC.AllowedTeams = {
 --  "TEAM_EXAMPLE",
 }
 
+PPC.MinMsgLength = 10
+PPC.MaxMsgLength = 24
+
+PPC.ChatCommands = {
+--	"!911",
+	"/911"
+}
+
 -- This is a config file, please read the comments behind the seperate config options!
