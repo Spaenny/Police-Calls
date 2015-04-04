@@ -1,0 +1,12 @@
+t.panelTitle = "Polizeimeldung"
+t.reportLabel = "%s berichtet:"
+t.respondLabel = "Antworten?"
+t.acceptCall = "Ja"
+t.declineCall = "Nein"
+
+t.reportSent = "Du hast eine Meldung an alle Beamten gesendet, die sich derzeit auf dem Server befinden: %s"
+t.noOfficers = "Es befinden sich gerade keine Beamten auf dem Server!"
+t.invalidMsgLength = "Deine Nachricht ist entweder zu kurz oder zu lang, um sie darzustellen, bitte verwende zwischen %u-%u Buchstaben!"
+t.busyOfficer = "Ich kann derzeit folgenden Bürger nicht helfen: %s!"
+t.respOfficer = "Ich reagiere auf die Meldung von folgendem Bürger: %s!"
+t.spamProtect = "Du solltest besser noch %s Sekunden warten."
