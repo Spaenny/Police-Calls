@@ -17,7 +17,7 @@ end
 local copson = false
 
 hook.Add( "OnPlayerChangedTeam", "PoliceOfficersQuestionmark", function( ply, oldt, newt )
-	if newt == oldt return end
+	if newt == oldt then return end
 	
 	local newtAllowed, oldtAllowed = inGroup( PPC.AllowedTeams, newt ), inGroup( PPC.AllowedTeams, oldt )
 	if not newtAllowed and not oldtAllowed then return end

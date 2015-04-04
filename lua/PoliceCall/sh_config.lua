@@ -17,7 +17,7 @@ PPC.ChatCommands = {
 	"/911"
 }
 
-PPC.MessageCD = 0 -- Cooldown between /911 calls. It's given in seconds so 240 seconds = 4 Minutes
+PPC.MessageCD = 240 -- Cooldown between /911 calls. It's given in seconds so 240 seconds = 4 Minutes
 
 PPC.MinMsgLength = 10 -- Minimum length of the message send with the call
 PPC.MaxMsgLength = 24 -- Maximum length of the message send with the call

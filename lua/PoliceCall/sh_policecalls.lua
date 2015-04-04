@@ -37,12 +37,12 @@ end
 function PPC:Translate(key, ...)
 	local args = {...} or ""
 	if self.lang[self:GetLanguage()][key] then
-		return string.format(self.lang[self:GetLanguage()][key], unpack(args)) or "PPC.lang." .. self:GetLanguage() .. "." .. key
+		return string.format(self.lang[self:GetLanguage()][key], unpack(args)) or "PPC.lang." .. self:GetLanguage() .. "." .. tostring(key)
 	elseif self.lang[self.defaultLanguage][key] then
-		return string.format(self.lang[self.defaultLanguage][key], unpack(args)) or "PPC.lang." .. self.defaultLanguage .. "." .. key
+		return string.format(self.lang[self.defaultLanguage][key], unpack(args)) or "PPC.lang." .. self.defaultLanguage .. "." .. tostring(key)
 	else
-		MsgC(Color(255, 50, 50), "'" .. key .. "' is missing in default language table!'\n")
-		return "PPC.lang." .. self.defaultLanguage .. "." .. key
+		MsgC(Color(255, 50, 50), "'" .. tostring(key) .. "' is missing in default language table!'\n")
+		return "PPC.lang." .. self.defaultLanguage .. "." .. tostring(key)
 	end
 end
 
