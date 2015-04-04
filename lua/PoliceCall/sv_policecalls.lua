@@ -10,8 +10,11 @@ local function inGroup( gtab, gid )
 	return false
 end
 
-local function countPlayers(g)
-	return table.Count(team.GetPlayers(g)) or 0
+local function splitInput( str )
+	local startPos, endPos = string.find( str, "%s+" )
+	local cmd = string.sub(str, 1, startPos - 1)
+	local msg = string.sub(str, endPos + 1)
+	return cmd, msg
 end
 
 local copson = false
@@ -22,17 +25,16 @@ hook.Add( "OnPlayerChangedTeam", "PoliceOfficersQuestionmark", function( ply, ol
 	local newtAllowed, oldtAllowed = inGroup( PPC.AllowedTeams, newt ), inGroup( PPC.AllowedTeams, oldt )
 	if not newtAllowed and not oldtAllowed then return end
 	
-	if newtAllowed or ( oldtAllowed and countPlayers( oldt ) ~= 0 ) then
+	if newtAllowed or ( oldtAllowed and team.NumPlayers( oldt ) ~= 0 ) then
 		copson = true
 	else
 		copson = false
 	end
 end )
 
-hook.Add( "PlayerSay", "911Calls", function( ply, msg )
-	local cmd = string.gsub( msg, "%s.*", "" )
+hook.Add( "PlayerSay", "911Calls", function( ply, str )
+	local cmd, msg = splitInput( str )
 	if table.HasValue( PPC.ChatCommands, cmd ) then
-		msg = string.sub( msg, cmd:len() + 1 ) -- also removes whitespace bewteen msg and cmd
 		if ply.lasttimeused then
 			if ply.lasttimeused + PPC.MessageCD > CurTime() then
 				local waittime = PPC.MessageCD - math.floor( CurTime() - ply.lasttimeused )
@@ -42,10 +44,14 @@ hook.Add( "PlayerSay", "911Calls", function( ply, msg )
 		end
 		if msg:len() >= PPC.MinMsgLength and msg:len() <= PPC.MaxMsgLength then
 			if copson then
-				net.Start( "PoliceCallNet" )
-					net.WriteString( msg )
-					net.WriteEntity( ply )
-				net.Send( ply )
+				for _,pply in pairs( player.GetAll() ) do
+					if IsValid(pply) and inGroup( PPC.AllowedTeams, pply:Team() ) then
+						net.Start( "PoliceCallNet" )
+							net.WriteString( msg )
+							net.WriteEntity( ply )
+						net.Send( pply )
+					end
+				end
 				ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "reportSent", msg ) )
 				ply.lasttimeused = CurTime()
 				return false
@@ -63,10 +69,10 @@ end )
 
 net.Receive( "CallP", function(len, ply)
 	local plycall = net.ReadEntity()
-	local bool = net.ReadBit()
-	if bool == 0 then
+	local bool = tobool(net.ReadBit())
+	if bool then
 		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
-	elseif bool == 1 then
+	else
 		ply:Say("/g " .. PPC:Translate( "respOfficer", plycall:Nick() ), false)
 	end
 end )
