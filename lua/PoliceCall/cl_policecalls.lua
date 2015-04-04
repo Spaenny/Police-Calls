@@ -107,4 +107,13 @@ net.Receive( "PoliceCallNet", function()
 		draw.RoundedBox(0, 0, 0, w, h, PPC.Buttontop)
 		draw.RoundedBox(0, 0, 0, w, h/2,PPC.Buttonbottom)
 	end
+	
+	if PPC.Timeout > 0 then
+		base.OnClose = function()
+			timer.Destroy("PPC.Timeout." .. ply:UniqueID())
+		end
+		timer.Create( "PPC.Timeout." .. ply:UniqueID(), PPC.Timeout, 0, function()
+			btn2.DoClick()
+		end )
+	end
 end )
