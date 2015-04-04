@@ -12,6 +12,11 @@ end
 
 local function splitInput( str )
 	local startPos, endPos = string.find( str, "%s+" )
+
+	if startPos == nil or startPos == nil then
+		return "", ""
+	end
+
 	local cmd = string.sub(str, 1, startPos - 1)
 	local msg = string.sub(str, endPos + 1)
 	return cmd, msg
@@ -70,8 +75,8 @@ end )
 net.Receive( "CallP", function(len, ply)
 	local plycall = net.ReadEntity()
 	if tobool(net.ReadBit()) then
-		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
-	else
 		ply:Say("/g " .. PPC:Translate( "respOfficer", plycall:Nick() ), false)
+	else
+		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
 	end
 end )
