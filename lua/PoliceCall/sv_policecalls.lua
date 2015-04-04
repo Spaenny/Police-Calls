@@ -69,8 +69,7 @@ end )
 
 net.Receive( "CallP", function(len, ply)
 	local plycall = net.ReadEntity()
-	local bool = tobool(net.ReadBit())
-	if bool then
+	if tobool(net.ReadBit()) then
 		ply:Say("/g " .. PPC:Translate( "busyOfficer", plycall:Nick() ), false)
 	else
 		ply:Say("/g " .. PPC:Translate( "respOfficer", plycall:Nick() ), false)
