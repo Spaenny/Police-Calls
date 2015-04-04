@@ -6,7 +6,7 @@ t.declineCall = "No"
 
 t.reportSent = "You have sent a report to all online officers: %s"
 t.noOfficers = "Sorry there are no online officers!"
-t.invalidMsgLength = "Your message is either way too short or too long to display, please use %u-%u chars!"
+t.invalidMsgLength = "Your message is either way too short or too long to display. Please use %u-%u chars!"
 t.busyOfficer = "I will not be able to help the citizen named: %s!"
 t.respOfficer = "I am responding to the call of the citizen named: %s!"
 t.spamProtect = "You might want to wait another %s second(s)."
