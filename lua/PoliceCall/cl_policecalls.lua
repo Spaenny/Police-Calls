@@ -39,7 +39,7 @@ net.Receive( "PoliceCallNet", function()
 	local ply = net.ReadEntity()
 
 	local base = vgui.Create( "DFrame" )
-	ply:EmitSound( RadioSound[math.random(#RadioSound)], 100, 100 )
+	LocalPlayer():EmitSound( RadioSound[math.random(#RadioSound)], 100, 100 )
 	base:SetPos( ScrW() - 340, 100 )
 	base:SetSize( 250, 115 )
 	base:SetVisible( true )
