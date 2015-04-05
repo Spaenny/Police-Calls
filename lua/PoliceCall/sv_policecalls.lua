@@ -14,7 +14,7 @@ end
 local function splitInput( str )
 	local startPos, endPos = string.find( str, "%s+" )
 
-	if startPos == nil or startPos == nil then
+	if startPos == nil or endPos == nil then
 		return "", ""
 	end
 
