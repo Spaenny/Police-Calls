@@ -1,3 +1,4 @@
+resource.AddWorkshop( "417155530" )
 util.AddNetworkString( "PoliceCallNet" )
 util.AddNetworkString( "CallP" )
 
