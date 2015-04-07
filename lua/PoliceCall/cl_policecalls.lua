@@ -101,23 +101,25 @@ net.Receive( "PoliceCallNet", function()
 			net.WriteEntity(ply)
 			net.WriteBit(false)
 		net.SendToServer()
-		local offset = Vector( 0, 0, 85 )
-		local ang = ply:EyeAngles()
-		local pos = ply:GetPos() + offset + ang:Up()
-		local redcable = Material("cable/red")
+		
+		if PPC.DrawMarker then
+			local offset = Vector( 0, 0, 150 )
+			local ang = ply:EyeAngles()
+			local pos = ply:GetPos() + offset + ang:Up()
 
-		hook.Add( "PreDrawOpaqueRenderables", "Markerdraw", function(iDD,iDS)
-			if iDD or iDS then return false end
-			if !LocalPlayer():Alive() then return end
-			cam.IgnoreZ(true)
-			render.SetMaterial(redcable)
-			render.Model({
-				["model"] = "models/gmod_tower/arrow.mdl",
-				["pos"] = pos,
-				["angle"] = Angle(0,0,0)
-			})
-			cam.IgnoreZ(false)
-		end)
+			hook.Add( "PreDrawOpaqueRenderables", "Markerdraw", function(iDD, iDS)
+				if iDD or iDS then return end
+				if !LocalPlayer():Alive() then return end
+				cam.IgnoreZ(true)
+				render.Model({
+					["model"] = "models/gmod_tower/arrow.mdl",
+					["pos"] = pos,
+					["angle"] = Angle(0,0,0)
+				})
+				cam.IgnoreZ(false)
+			end )
+		end
+		
 		base:Close()
 	end
 	function btn2:Paint( w, h )

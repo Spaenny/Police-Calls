@@ -24,6 +24,8 @@ PPC.Timeout = 20 -- Time after that a call will be declined automatically, in se
 PPC.MinMsgLength = 10 -- Minimum length of the message send with the call
 PPC.MaxMsgLength = 24 -- Maximum length of the message send with the call
 
+PPC.DrawMarker = true -- whether to draw the marker on the map
+
 -- Change colors only if you know what you are doing!
 PPC.Buttonbottom	= Color( 255, 255, 255, 10 ) -- Color( red, green, blue, alpha )
 PPC.Buttontop		= Color( 69, 178, 157 )
