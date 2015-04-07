@@ -11,11 +11,11 @@ function PPC:LoadLanguage(name)
 	local temp = {}
 	temp.t = {}
 	
-	local func = CompileFile("PoliceCall/lang/" .. name .. ".lua")
+	local func = CompileFile("policecalls/lang/" .. name .. ".lua")
 
 	if isfunction(func) then
 		if SERVER then
-			AddCSLuaFile("PoliceCall/lang/" .. name .. ".lua")
+			AddCSLuaFile("policecalls/lang/" .. name .. ".lua")
 		end
 
 		setfenv(func, temp)
@@ -29,7 +29,7 @@ function PPC:LoadLanguage(name)
 			return false
 		end
 	else
-		MsgC(Color(255, 50, 50), "Failed to compile language file 'PoliceCall/lang/" .. name .. ".lua'\n")
+		MsgC(Color(255, 50, 50), "Failed to compile language file 'policecalls/lang/" .. name .. ".lua'\n")
 		return false
 	end
 end
