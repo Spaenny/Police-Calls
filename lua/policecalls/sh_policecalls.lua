@@ -51,10 +51,3 @@ local loaded = PPC:LoadLanguage(PPC:GetLanguage())
 if not loaded or ( loaded and PPC:GetLanguage() ~= PPC.defaultLanguage ) then
 	PPC:LoadLanguage(PPC.defaultLanguage)
 end
-
--- Check config vars
-if PPC.Timeout >= PPC.MessageCD and PPC.Timeout > 0 then
-	MsgC(Color(255, 50, 50), "PPC.MessageCD has to be greater than PPC.Timeout! Using default values instead...\n")
-	PPC.MessageCD = 240
-	PPC.Timeout = 20
-end

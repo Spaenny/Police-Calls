@@ -11,13 +11,15 @@ PPC.AllowedTeams = {
 	"TEAM_CHIEF"
 }
 
+PPC.AllowPrivileged = true -- whether a player is allowed to send a call who is in a team defined in "AllowedTeams"
+PPC.AllowArrested = false -- wether an arrested player is allowed to send a call
+
 -- Chat commands available to call a privileged person
 PPC.ChatCommands = {
 --	"!911",
 	"/911"
 }
 
--- Note: PPC.MessageCD has to be greater than PPC.Timeout (if not zero), otherwise an error will be thrown into chat and console
 PPC.MessageCD = 240 -- Cooldown between /911 calls. It's given in seconds so 240 seconds = 4 Minutes
 PPC.Timeout = 20 -- Time after that a call will be declined automatically, in seconds, set to zero to disable this feature
 

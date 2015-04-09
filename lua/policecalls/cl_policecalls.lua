@@ -100,26 +100,7 @@ net.Receive( "PoliceCallNet", function()
 		net.Start( "CallP" )
 			net.WriteEntity(ply)
 			net.WriteBit(false)
-		net.SendToServer()
-		
-		if PPC.DrawMarker then
-			local offset = Vector( 0, 0, 150 )
-			local ang = ply:EyeAngles()
-			local pos = ply:GetPos() + offset + ang:Up()
-
-			hook.Add( "PreDrawOpaqueRenderables", "Markerdraw", function(iDD, iDS)
-				if iDD or iDS then return end
-				if !LocalPlayer():Alive() then return end
-				cam.IgnoreZ(true)
-				render.Model({
-					["model"] = "models/gmod_tower/arrow.mdl",
-					["pos"] = pos,
-					["angle"] = Angle(0,0,0)
-				})
-				cam.IgnoreZ(false)
-			end )
-		end
-		
+		net.SendToServer()	
 		base:Close()
 	end
 	function btn2:Paint( w, h )
@@ -128,11 +109,10 @@ net.Receive( "PoliceCallNet", function()
 	end
 	
 	if PPC.Timeout > 0 then
-		base.OnClose = function()
-			timer.Destroy("PPC.Timeout." .. ply:UniqueID())
-		end
-		timer.Create( "PPC.Timeout." .. ply:UniqueID(), PPC.Timeout, 0, function()
-			btn2.DoClick()
+		timer.Simple( PPC.Timeout, function()
+			if IsValid( base ) then
+				btn2.DoClick() -- decline call
+			end
 		end )
 	end
 end )

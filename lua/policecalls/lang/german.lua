@@ -10,3 +10,5 @@ t.invalidMsgLength = "Deine Nachricht ist entweder zu kurz oder zu lang, um sie 
 t.busyOfficer = "Ich kann zur Zeit folgendem Bürger nicht helfen: %s!"
 t.respOfficer = "Ich reagiere auf die Meldung von folgendem Bürger: %s!"
 t.spamProtect = "Du solltest besser noch %s Sekunde(n) warten."
+t.onlyNonPrivileged = "Dir ist es nicht erlaubt diesen Befehl auszuführen!"
+t.onlyNonArrested = "Dir ist es nicht erlaubt diesen Befehl auszuführen!"

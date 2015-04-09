@@ -15,7 +15,7 @@ local function splitInput( str )
 	local startPos, endPos = string.find( str, "%s+" )
 
 	if startPos == nil or endPos == nil then
-		return "", ""
+		return
 	end
 
 	local cmd = string.sub(str, 1, startPos - 1)
@@ -40,7 +40,15 @@ end )
 
 hook.Add( "PlayerSay", "911Calls", function( ply, str )
 	local cmd, msg = splitInput( str )
-	if table.HasValue( PPC.ChatCommands, cmd ) then
+	if cmd and table.HasValue( PPC.ChatCommands, cmd ) then
+		if not PPC.AllowPrivileged and inGroup( PPC.AllowedTeams, ply:Team() ) then
+			ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "onlyNonPrivileged" ))
+			return false
+		end
+		if not PPC.AllowArrested and ply:isArrested() then
+			ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "onlyNonArrested" ))
+			return false
+		end
 		if ply.lasttimeused then
 			if ply.lasttimeused + PPC.MessageCD > CurTime() then
 				local waittime = PPC.MessageCD - math.floor( CurTime() - ply.lasttimeused )
@@ -51,7 +59,7 @@ hook.Add( "PlayerSay", "911Calls", function( ply, str )
 		if msg:len() >= PPC.MinMsgLength and msg:len() <= PPC.MaxMsgLength then
 			if copson then
 				for _,pply in pairs( player.GetAll() ) do
-					if IsValid(pply) and inGroup( PPC.AllowedTeams, pply:Team() ) then
+					if IsValid(pply) and pply ~= ply and inGroup( PPC.AllowedTeams, pply:Team() ) then
 						net.Start( "PoliceCallNet" )
 							net.WriteString( msg )
 							net.WriteEntity( ply )
