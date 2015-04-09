@@ -43,17 +43,17 @@ hook.Add( "PlayerSay", "911Calls", function( ply, str )
 	if cmd and table.HasValue( PPC.ChatCommands, cmd ) then
 		if not PPC.AllowPrivileged and inGroup( PPC.AllowedTeams, ply:Team() ) then
 			ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "onlyNonPrivileged" ))
-			return false
+			return ""
 		end
 		if not PPC.AllowArrested and ply:isArrested() then
 			ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "onlyNonArrested" ))
-			return false
+			return ""
 		end
 		if ply.lasttimeused then
 			if ply.lasttimeused + PPC.MessageCD > CurTime() then
 				local waittime = PPC.MessageCD - math.floor( CurTime() - ply.lasttimeused )
 				ply:PrintMessage(HUD_PRINTTALK, PPC:Translate( "spamProtect", tostring( waittime ) ))
-				return false
+				return ""
 			end
 		end
 		if msg:len() >= PPC.MinMsgLength and msg:len() <= PPC.MaxMsgLength then
@@ -68,14 +68,14 @@ hook.Add( "PlayerSay", "911Calls", function( ply, str )
 				end
 				ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "reportSent", msg ) )
 				ply.lasttimeused = CurTime()
-				return false
+				return ""
 			else
 				ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "noOfficers" ) )
-				return false
+				return ""
 			end
 		else
 			ply:PrintMessage( HUD_PRINTTALK, PPC:Translate( "invalidMsgLength", PPC.MinMsgLength, PPC.MaxMsgLength ) )
-			return false
+			return ""
 		end
 	end
 end )
