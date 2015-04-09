@@ -5,14 +5,14 @@ PPC.Language = "english" -- name of file in lua/lang without the .lua extension
 
 -- Set here the team you would like to receive the messages of the reporting peoples.
 PPC.AllowedTeams = {
---  "TEAM_EXAMPLE",
+--	"TEAM_EXAMPLE",
 	"TEAM_POLICE",
 	"TEAM_MAYOR",
 	"TEAM_CHIEF"
 }
 
 PPC.AllowPrivileged = true -- whether a player is allowed to send a call who is in a team defined in "AllowedTeams"
-PPC.AllowArrested = false -- wether an arrested player is allowed to send a call
+PPC.AllowArrested = false -- whether an arrested player is allowed to send a call
 
 -- Chat commands available to call a privileged person
 PPC.ChatCommands = {
@@ -26,7 +26,8 @@ PPC.Timeout = 20 -- Time after that a call will be declined automatically, in se
 PPC.MinMsgLength = 10 -- Minimum length of the message send with the call
 PPC.MaxMsgLength = 24 -- Maximum length of the message send with the call
 
-PPC.DrawMarker = true -- whether to draw the marker on the map
+-- used later
+-- PPC.DrawMarker = true -- whether to draw the marker on the map
 
 -- Change colors only if you know what you are doing!
 PPC.Buttonbottom	= Color( 255, 255, 255, 10 ) -- Color( red, green, blue, alpha )
