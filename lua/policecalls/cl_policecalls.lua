@@ -39,7 +39,7 @@ net.Receive( "PoliceCallNet", function()
 	local ply = net.ReadEntity()
 
 	local base = vgui.Create( "DFrame" )
-	ply:EmitSound( RadioSound[math.random(#RadioSound)], 100, 100 )
+	LocalPlayer():EmitSound( RadioSound[math.random(#RadioSound)], 100, 100 )
 	base:SetPos( ScrW() - 340, 100 )
 	base:SetSize( 250, 115 )
 	base:SetVisible( true )
@@ -100,7 +100,7 @@ net.Receive( "PoliceCallNet", function()
 		net.Start( "CallP" )
 			net.WriteEntity(ply)
 			net.WriteBit(false)
-		net.SendToServer()
+		net.SendToServer()	
 		base:Close()
 	end
 	function btn2:Paint( w, h )
@@ -109,11 +109,10 @@ net.Receive( "PoliceCallNet", function()
 	end
 	
 	if PPC.Timeout > 0 then
-		base.OnClose = function()
-			timer.Destroy("PPC.Timeout." .. ply:UniqueID())
-		end
-		timer.Create( "PPC.Timeout." .. ply:UniqueID(), PPC.Timeout, 0, function()
-			btn2.DoClick()
+		timer.Simple( PPC.Timeout, function()
+			if IsValid( base ) then
+				btn2.DoClick() -- decline call
+			end
 		end )
 	end
 end )

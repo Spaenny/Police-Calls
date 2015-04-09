@@ -1,11 +1,11 @@
-include( "PoliceCall/sh_config.lua" )
-include( "PoliceCall/sh_policecalls.lua" )
+include( "policecalls/sh_config.lua" )
+include( "policecalls/sh_policecalls.lua" )
 
 if SERVER then
-	AddCSLuaFile( "PoliceCall/sh_config.lua" )
-	AddCSLuaFile( "PoliceCall/sh_policecalls.lua" )
-	AddCSLuaFile( "PoliceCall/cl_policecalls.lua" )
-	include( "PoliceCall/sv_policecalls.lua" )
+	AddCSLuaFile( "policecalls/sh_config.lua" )
+	AddCSLuaFile( "policecalls/sh_policecalls.lua" )
+	AddCSLuaFile( "policecalls/cl_policecalls.lua" )
+	include( "policecalls/sv_policecalls.lua" )
 else
-	include( "PoliceCall/cl_policecalls.lua" )
+	include( "policecalls/cl_policecalls.lua" )
 end

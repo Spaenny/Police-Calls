@@ -10,3 +10,5 @@ t.invalidMsgLength = "Your message is either way too short or too long to displa
 t.busyOfficer = "I will not be able to help the citizen named: %s!"
 t.respOfficer = "I am responding to the call of the citizen named: %s!"
 t.spamProtect = "You might want to wait another %s second(s)."
+t.onlyNonPrivileged = "Sorry! You are not allowed to use this command."
+t.onlyNonArrested = "Sorry! You are not allowed to use this command."
