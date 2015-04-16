@@ -18,9 +18,7 @@ local function splitInput( str )
 		return
 	end
 
-	local cmd = string.sub(str, 1, startPos - 1)
-	local msg = string.sub(str, endPos + 1)
-	return cmd, msg
+	return string.sub(str, 1, startPos - 1), string.sub(str, endPos + 1)
 end
 
 local copson = false
