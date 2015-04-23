@@ -6,6 +6,15 @@ PPC.Language = "english" -- name of file in lua/lang without the .lua extension
 -- Set here the team you would like to receive the messages of the reporting peoples.
 PPC.AllowedTeams = {
 --	"TEAM_EXAMPLE",
+--[[ -- You can also use a function instead of an actual team name
+	function(ply)
+		if ply:IsAdmin() then
+			return true
+		else
+			return false
+		end
+	end,
+--]]
 	"TEAM_POLICE",
 	"TEAM_MAYOR",
 	"TEAM_CHIEF"
