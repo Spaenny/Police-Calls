@@ -35,7 +35,7 @@ function PPC:LoadLanguage(name)
 end
 
 function PPC:Translate(key, ...)
-	local args = {...} or {}
+	local args = {...}
 	if self.lang[self:GetLanguage()][key] then
 		return string.format(self.lang[self:GetLanguage()][key], unpack(args)) or "PPC.lang." .. self:GetLanguage() .. "." .. tostring(key)
 	elseif self.lang[self.defaultLanguage][key] then

@@ -28,6 +28,12 @@ end
 
 local copson = false
 
+hook.Add( "PlayerInitialSpawn", "PoliceOfficersQuestionmark", function( ply )
+	if inGroup( PPC.AllowedTeams, ply ) then
+		copson = true
+	end
+end )
+
 hook.Add( "OnPlayerChangedTeam", "PoliceOfficersQuestionmark", function( ply, oldt, newt )
 	if newt == oldt or not IsValid(ply) then return end
 	
