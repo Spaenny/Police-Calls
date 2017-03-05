@@ -11,6 +11,7 @@ This is an addon, that is an alternative version of RedNinjas Emergency System. 
 * good looking UI
 * multilingual
 * !!marker at location(currently disabled)
+
 ##Information
 /911 MESSAGE To write a report for a user
 You can customize the cooldown of the spam protection and add unlimited teams to get the messages. (You need to look at the config file for that!)
